@@ -82,7 +82,7 @@ def process_tags(generator, metadata):
         'jquery2': googleapi + 'jquery/2.2.4/jquery.min.js',
         'three.js': googleapi + 'threejs/r76/three.min.js',
         'threejs': googleapi + 'threejs/r76/three.min.js',
-        'vue': cloudflare + "vue/2.0.3/vue.js",
+        'vue': cloudflare + "vue/2.1.8/vue.js",
         'zingchart': "https://cdn.zingchart.com/zingchart.min.js"
     }
 
@@ -104,7 +104,6 @@ def process_tags(generator, metadata):
     location = {
         'stylesheet': 'header_assets',
         'google-font': 'header_assets',
-        'font': 'header_assets',
         'style': 'header_assets',
         'lib': 'footer_assets',
         'script': 'footer_assets'
@@ -125,7 +124,6 @@ def process_tags(generator, metadata):
     if 'EXTERNAL_PAGE_LIBS' in generator.settings:
         external_page_libs.update(generator.settings['EXTERNAL_PAGE_LIBS'])
 
-    sections = location.values()
     frags = {}
 
     for key in metadata:
@@ -171,7 +169,7 @@ def process_tags(generator, metadata):
                         link = ref
                     else:
                         if generator.settings['RELATIVE_URLS']:
-                            link = "%s/%s" % (dirs[key], ref)
+                            link = "/%s/%s" % (dirs[key], ref)
                         else:
                             link = "%s/%s/%s" % (site_url, dirs[key], ref)
                     html = reference_fmts[lkey].format(link)
@@ -187,11 +185,10 @@ def process_tags(generator, metadata):
             frags[section] = html_frags
             logger.info("psa:  frags[%s] = %s" % (section, html_frags))
 
-    for s in sections:
-        if s in frags:
-            metadata[s] = frags[s]
-            logger.info("psa: metadata[%s] = (%s) %s" %
-                        (s, type(metadata[s]), metadata[s]))
+    if len(frags) > 0:
+        for loc in frags:
+            metadata[loc] = frags[loc]
+            logger.info("psa: metadata[%s] = (%s)" % (loc, frags[loc]))
 
 
 def copy_assets(content, output, file_list):

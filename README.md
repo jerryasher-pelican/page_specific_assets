@@ -1,18 +1,23 @@
 Page Specific Assets
 ===============
 
-This Pelican plugin makes it easy to embed Javascript files and CSS stylesheets into individual Pelican blog articles.
+This Pelican plugin makes it easy to embed Javascript files and CSS
+stylesheets into individual Pelican blog articles.
 
 Credit
 ------
 This plugin was inspired by and adopted from the work of [ ]() at
 
-which was based on Rob Story's [Pelican Dynamic](https://github.com/wrobstory) at [pelican_dynamic](https://github.com/wrobstory/pelican_dynamic). 
+which was based on Rob Story's
+[Pelican Dynamic](https://github.com/wrobstory) at
+[pelican_dynamic](https://github.com/wrobstory/pelican_dynamic).
 
 
 Installation
 ------------
-To install the plugin, [follow the instructions on the Pelican plugin page.](https://github.com/getpelican/pelican-plugins) My settings look like the following:
+To install the plugin, [follow the instructions on the Pelican plugin
+page.](https://github.com/getpelican/pelican-plugins) My settings look
+like the following:
 
 ```python
 PLUGIN_PATH = 'pelican-plugins'
@@ -38,7 +43,8 @@ website/
 └── pelicanconf.py
 ```
 
-and then specify each resource as a comma-separated file name in the ```scripts``` and ```stylesheets``` keys
+and then specify each resource as a comma-separated file name in the
+```scripts``` and ```stylesheets``` keys
 
 ```
 Title: Pelican blog post with dynamic javascript and css components
@@ -50,7 +56,10 @@ scripts: page1.js, page2.js
 stylesheets: page1.css
 ```
 
-You can also include javascript libraries from a web resource without having to carry the files on your own. Using the ```libs``` key, If the string starts with `http://` or `https://` it will be treated like a web resource
+You can also include javascript libraries from a web resource without
+having to carry the files on your own. Using the ```libs``` key, If
+the string starts with `http://` or `https://` it will be treated like
+a web resource
 
 ```
 Title: Pelican blog post with dynamic javascript and css components
@@ -63,7 +72,9 @@ stylesheet: page1.css
 libs: https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js,
 ```
 
-You can reference and load google fonts using the ```google-fonts``` key and providing a google font selector (see [Google Fonts](https://fonts.google.com/))
+You can reference and load google fonts using the ```google-fonts```
+key and providing a google font selector (see
+[Google Fonts](https://fonts.google.com/))
 
 ```
 Title: Pelican blog post with dynamic javascript and css components
@@ -78,7 +89,8 @@ google-font: Oswald:400,700
 ```
 
 
-You can add style fragments directly into the header with the ```style``` key:
+You can add style fragments directly into the header with the
+```style``` key:
 
 ```
 Title: Pelican blog post with dynamic javascript and css components
@@ -93,7 +105,8 @@ google-font: Oswald:400,700
 style: body { font-family: 'Oswald', sans-serif; font-size: 100%; }
 ```
 
-And you can define short tags for well known libraries in the config file that are then referenced with the libs key.
+And you can define short tags for well known libraries in the config
+file that are then referenced with the libs key.
 
 ```
 EXTERNAL_PAGE_LIBS = {
@@ -121,7 +134,8 @@ Note that the files will be included in the same order specified.
 
 Additions to Templates
 ----------------------
-Finally, in your base template (likely named ```base.html```), you need to add the following in your ```<head>``` section of the HTML:
+Finally, in your base template (likely named ```base.html```), you
+need to add the following in your ```<head>``` section of the HTML:
 ```
 {% if article %}
     {% if article.stylesheets %}
@@ -147,4 +161,6 @@ and the following *after* your ```</body>``` tag:
 {% endif %}
 ```
 
-That's it! Run your standard ```make html``` or ```make publish``` commands and your JSS/CSS will be moved and referenced in the output HTML.
+That's it! Run your standard ```make html``` or ```make publish```
+commands and your JSS/CSS will be moved and referenced in the output
+HTML.
